@@ -299,3 +299,32 @@ console.log(whatDoYouDo('developer', 'Me'));
 console.log(whatDoYouDo('teacher', 'Me'));
 
 */
+
+/* arrays
+*/
+
+// inialization
+var names = ["Aries", "Panda", "Trouble"];
+var years = new Array(2010, 2015, 2018);
+
+console.log(names[0], years[0]); 
+console.log(names.length);          // number of elements in the array
+
+// mutate array
+names[1] = "Casper";
+names[5] = "Panda";
+console.log(names);
+
+// different data types
+
+var cat = ["Panda","Black & White", 2015, true];
+
+cat.push("hissy");                  // add element to end of array
+console.log(cat);
+
+cat.unshift("female");              // add to beginning of array.
+console.log(cat);
+
+cat.pop();                          // pop to last element off the array.
+cat.shift();                        // remove first element of the array.
+console.log(cat);
