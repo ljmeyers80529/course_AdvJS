@@ -105,14 +105,14 @@ console.log(x);
 /*
 var markHeight = 1.7;       // 1.7 meters
 var markMass = 75;          // 45 kg
-var johnHeight = 1.69;
-var johnMass = 81;
+var meHeight = 1.69;
+var meMass = 81;
 
 var markBMI = markMass / markHeight^2;
-var johnBMI = johnMass / johnHeight^2;
-var isMarksBMI = markBMI > johnBMI;
-console.log(markBMI, johnBMI);
-console.log("Is Mark's BMI greater than John's?", isMarksBMI);
+var meBMI = meMass / meHeight^2;
+var isMarksBMI = markBMI > meBMI;
+console.log(markBMI, meBMI);
+console.log("Is Mark's BMI greater than me's?", isMarksBMI);
 */
 
 
@@ -138,16 +138,16 @@ if (isMarried) {
 
 var markHeight = 1.7;       // 1.7 meters
 var markMass = 75;          // 45 kg
-var johnHeight = 1.69;
-var johnMass = 81;
+var meHeight = 1.69;
+var meMass = 81;
 
 var markBMI = markMass / markHeight^2;
-var johnBMI = johnMass / johnHeight^2;
+var meBMI = meMass / meHeight^2;
 
-if (markBMI > johnBMI) {
-    console.log("Mark's BMI if greater than John's");
+if (markBMI > meBMI) {
+    console.log("Mark's BMI if greater than me's");
 } else {
-    console.log("John's BMI if greater than marks's");
+    console.log("me's BMI if greater than marks's");
 }
 */
 
@@ -244,13 +244,13 @@ if (height === '23') {
 */
 
 /* challenge 2
-var johnAve = (110 + 120 + 103) / 3;
+var meAve = (110 + 120 + 103) / 3;
 var mikeAve = (116 + 94 + 123) / 3;
 var winner;
 var ave;
 
-johnAve === mikeAve ? winner = "was a Draw" : ( johnAve > mikeAve ? winner = "was John" : winner = "was Mike");
-johnAve === mikeAve ? ave = johnAve : ( johnAve > mikeAve ? ave = johnAve : ave = mikeAve);
+meAve === mikeAve ? winner = "was a Draw" : ( meAve > mikeAve ? winner = "was me" : winner = "was Mike");
+meAve === mikeAve ? ave = meAve : ( meAve > mikeAve ? ave = meAve : ave = mikeAve);
 //console.log("Thw winner is " + winner + " with an average of " + ave + " points per game.");
 
 var maryAve = (97 + 40 + 105) / 3;
@@ -258,7 +258,7 @@ if (ave < maryAve) {
     winner = "was Mary";
     ave = maryAve;
 }
-console.log(johnAve, mikeAve, maryAve);
+console.log(meAve, mikeAve, maryAve);
 console.log("Thw winner " + winner + " with an average of " + ave + " points per game.");
 */
 
@@ -301,7 +301,6 @@ console.log(whatDoYouDo('teacher', 'Me'));
 */
 
 /* arrays
-*/
 
 // inialization
 var names = ["Aries", "Panda", "Trouble"];
@@ -328,3 +327,216 @@ console.log(cat);
 cat.pop();                          // pop to last element off the array.
 cat.shift();                        // remove first element of the array.
 console.log(cat);
+
+var idx = cat.indexOf(2015);
+console.log('Index of 2015 is ', idx);
+
+var isBW = cat.indexOf('Black & White') === -1 ? "The cat NOT black and white" : "The cat IS black and white";
+console.log(isBW); 
+*/
+/* challenge 3
+
+function calculateTip(bill) {
+    if (bill < 50) {
+        return bill * 0.2;
+    } else if (bill >= 50 && bill < 200) {
+        return bill * 0.15;
+    }
+    return bill * 0.1;
+}
+
+var bills = [124, 48, 268];
+var totals = [];
+
+totals.push(calculateTip(bills[0]) + bills[0]);;
+totals.push(calculateTip(bills[1]) + bills[1]);
+totals.push(calculateTip(bills[2]) + bills[2]);
+
+console.log(bills, totals);
+*/
+
+/* objects and properties (dictionary or key/value pairs)
+
+var cat = {
+    name: 'Panda',
+    color: 'Black & White',
+    type: 'DSH',
+    born: 2015
+};
+
+console.log(cat);
+console.log(cat.color);
+console.log(cat['name']);
+
+console.log(cat);
+cat.born = 2012;
+cat['color'] = 'Orange';
+console.log(cat);
+
+var aries = new Object();
+aries.color = "Orange";
+aries.type = "DSH";
+aries.born = 2010;
+aries.sex = 'male';
+console.log(aries);
+*/
+
+/* objects and methods
+
+var cat = {
+    name: 'Panda',
+    color: 'Black & White',
+    type: 'DSH',
+    born: 2015,
+    // calcAge: function(year) { return 2019 - year; }
+    // calcAge: function() { return 2019 - this.born ;}
+    calcAge: function() { this.age = 2019 - this.born ;}
+};
+
+// console.log(cat.name + " is " + cat.calcAge(2015) + " years old");
+// console.log(cat.name + " is " + cat.calcAge() + " years old");
+cat.calcAge();
+console.log(cat.name + " is " + cat.age + " years old");
+
+*/
+
+/* challenge 4
+
+aries = {
+    name: 'Aries Meyers',
+    mass: 75,
+    height: 1.72,
+    calcBMI: function() {
+        this.bmi = this.mass / this.height^2;
+        return this.bmi;
+    }
+}
+
+nuzzie = {
+    name: 'Nuzzie Meyers',
+    mass: 71,
+    height: 1.64,
+    calcBMI: function() {
+        this.bmi = this.mass / this.height^2;
+        return this.bmi;
+    }
+}
+
+if (aries.calcBMI() > nuzzie.calcBMI()) {
+    console.log(aries.name + " has a bmi greater then " + nuzzie.name + " with a BMI of " + aries.bmi);
+} else if (aries.bmi < nuzzie.bmi) {
+    console.log(nuzzie.name + " has a bmi greater then " + aries.name + " with a BMI of " + nuzzie.bmi);
+} else {
+    console.log("Both " + nuzzie.name + " and  " + aries.name + " has  a BMI of " + nuzzie.bmi);
+}
+
+*/
+
+/* loops (do, while, for)
+
+for (var i = 0; i < 10; i++)
+    console.log(i);
+
+var names = ["Aries", "Panda", 2015, "Trouble", "Grey", "Nuzzie"];
+
+for (var i = 0; i < names.length; i++)
+    console.log(names[i]);
+console.log('\n');
+
+var i = 0;
+while (i < names.length) {
+    console.log(names[i]);
+    i++;
+}
+console.log('\n');
+
+for (var i = 0; i < names.length; i++) {
+    if (typeof(names[i]) !== 'string') continue;
+    console.log(names[i]);
+}
+console.log('\n');
+
+for (var i = 0; i < names.length; i++) {
+    if (typeof(names[i]) !== 'string')  break;
+    console.log(names[i]);
+}
+console.log('\n');
+
+for(var i = names.length-1; i >= 0; i--) console.log(names[i]);
+*/
+
+/* challenge 5
+
+function calcAverage(paid) {
+    var ave = 0;
+    for(var i = 0; i < paid.length; i++) ave += paid[i];
+    return ave / paid.length;
+}
+
+var me = {
+    fullName: "Me Meyers",
+    paid: [124, 48, 268, 180, 42],
+    tips: [],
+    totals: [],
+    calcTip: function() {
+        var tipValue;
+        var bill;
+        for(var i = 0; i < this.paid.length; i++) {
+            bill = this.paid[i];
+            if (bill < 50) {
+                tipValue = 0.20;
+            } else if (bill >= 50 && bill < 200) {
+                tipValue = 0.15;
+            } else {
+                tipValue = 0.10;
+            }
+            this.tips.push(bill * tipValue);
+            this.totals.push(this.tips[i] + bill);
+        }
+    }
+}
+
+me.calcTip();
+console.log(me.fullName, me.paid, me.tips, me.totals);
+
+
+var gremmie = {
+    fullName: "Gremlin Meyers",
+    paid: [77, 375, 110, 45],
+    tips: [],
+    totals: [],
+    calcTip: function() {
+        var tipValue;
+        var bill;
+        for(var i = 0; i < this.paid.length; i++) {
+            bill = this.paid[i];
+            if (bill < 100) {
+                tipValue = 0.20;
+            } else if (bill >= 100 && bill < 300) {
+                tipValue = 0.10;
+            } else {
+                tipValue = 0.25;
+            }
+            this.tips.push(bill * tipValue);
+            this.totals.push(this.tips[i] + bill);
+        }
+    }
+}
+
+gremmie.calcTip();
+console.log(gremmie.fullName, gremmie.paid, gremmie.tips, gremmie.totals);
+
+meAve = calcAverage(me.tips);
+gremmieAve = calcAverage(gremmie.tips);
+
+if (meAve > gremmieAve) {
+    console.log(me.fullName + " had a high tip average than " + gremmie.fullName + " @ " + meAve);
+} else if (meAve < gremmieAve) {
+    console.log(gremmie.fullName + " had a high tip average than " + me.fullName + " @ " + gremmieAve);
+} else {
+    console.log("Both " + me.fullName + " and " + gremmie.fullName + " had the sametip @ " + meAve);
+}
+
+*/
+
+
