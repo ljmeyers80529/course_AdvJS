@@ -9,13 +9,14 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, lastDice;
 
 init();
 
 function nextPlayer() {
     activePlayer ? activePlayer = 0 : activePlayer = 1;
     roundScore = 0;
+    lastDice = 0;
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
 
@@ -29,6 +30,7 @@ function init() {
     roundScore = 0;                 // round score.
     activePlayer = 0;
     gamePlaying = true;
+    lastDice = 0;
 
     document.querySelector('.dice').style.display = 'none';                 // hide the dice image.
     document.getElementById('score-0').textContent = '0';
@@ -56,9 +58,16 @@ document.querySelector('.btn-roll').addEventListener("click", function () {
         diceDOM.src = 'dice-' + dice + '.png';
 
         if (dice > 1) {
-            roundScore += dice;
-            document.querySelector('#current-' + activePlayer).textContent = roundScore;
-            document.querySelector('.dice').style.display = 'block';                 // hide the dice image.
+            if (dice === 6 && dice === lastDice) {
+                scores[activePlayer] = 0;
+                document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+                nextPlayer();
+            } else {
+                roundScore += dice;
+                lastDice = dice;
+                document.querySelector('#current-' + activePlayer).textContent = roundScore;
+                document.querySelector('.dice').style.display = 'block';                 // hide the dice image.
+                }
         } else {
             nextPlayer();
         }
