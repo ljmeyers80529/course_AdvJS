@@ -198,7 +198,7 @@ function interviewQuestion(job) {
 interviewQuestion('teacher')('nuzzie');
 interviewQuestion('developer')('duchess');
 interviewQuestion('designer')('gremmie');
-*/
+
 // bind, call, and apply.
 
 var nuzzie = {
@@ -224,12 +224,12 @@ nuzzie.presentation('formal', 'morning');
 nuzzie.presentation.call(dora, 'friendly', 'afternoon');            // using the call method
 
 //nuzzie.presentation.apply(dora, ['friendly', 'evening']);           // will not work, the method does not accept an array.
-/*
-var x = nuzzie.presentation.bind(dora);
-var y = nuzzie.presentation.bind(dora, 'friendly');
-x('formal', 'evening');
-y('morning');
-*/
+
+// var x = nuzzie.presentation.bind(dora);
+// var y = nuzzie.presentation.bind(dora, 'friendly');
+// x('formal', 'evening');
+// y('morning');
+
 
 var years = [2011, 2018, 2008, 1996, 1961];
 
@@ -252,4 +252,144 @@ function isFullAge(limit, age) {
 var ages = arrayCalc(years, calculateAge);
 var fa = arrayCalc(ages, isFullAge.bind(this, 20));     // preset limit to a set value so arrayCalc can execute.
 console.log(fa);
+
+*/
+
+// coding challenge
+// function Question(question, answers, correctAnswer) {       // constructor function.
+//     this.question = question;
+//     this.answers = answers;
+//     this.correct = correctAnswer;
+// }
+
+// Question.prototype.displayQuestion = function() {          // add display function to prototype chain so each question has a seperate copy of this function.
+//     console.log(this.question);
+
+//     for(var i = 0; i < this.answers.length; i++) {
+//         console.log(i + ': ' + this.answers[i]);
+//     }
+// }
+
+// Question.prototype.checkAnswer = function(ans) {
+//     console.log(this.correct === ans ? "Correct" : "Incorrect");
+// }
+
+// var q1 = new Question('Is jsvscript the coolest programming language in the world?', ['Yes','No'], 0);
+// var q2 = new Question('What is the name of the calico cat?', ['Nuzzie','Misty','Cali','Dory'], 2);
+// var q3 = new Question('What does best describe coding?', ['Boring','Fun','Tedious','Hard'], 1);
+
+// var questions = [q1, q2, q3];
+// var n = Math.floor(Math.random() * questions.length);
+
+// questions[n].displayQuestion();
+
+// var answer = parseInt(prompt('Please select correct answer'));
+
+// questions[n].checkAnswer(answer);
+
+
+// (function() {           // converted to IIFE
+
+//     function Question(question, answers, correctAnswer) {       // constructor function.
+//         this.question = question;
+//         this.answers = answers;
+//         this.correct = correctAnswer;
+//     }
+
+//     Question.prototype.displayQuestion = function() {          // add display function to prototype chain so each question has a seperate copy of this function.
+//         console.log(this.question);
+
+//         for(var i = 0; i < this.answers.length; i++) {
+//             console.log(i + ': ' + this.answers[i]);
+//         }
+//     }
+
+//     Question.prototype.checkAnswer = function(ans) {
+//         console.log(this.correct === ans ? "Correct" : "Incorrect");
+//     }
+
+//     var q1 = new Question('Is jsvscript the coolest programming language in the world?', ['Yes','No'], 0);
+//     var q2 = new Question('What is the name of the calico cat?', ['Nuzzie','Misty','Cali','Dory'], 2);
+//     var q3 = new Question('What does best describe coding?', ['Boring','Fun','Tedious','Hard'], 1);
+
+//     var questions = [q1, q2, q3];
+//     var n = Math.floor(Math.random() * questions.length);
+
+//     questions[n].displayQuestion();
+
+//     var answer = parseInt(prompt('Please select correct answer'));
+
+//     questions[n].checkAnswer(answer);
+//     })();
+
+
+// expert level.
+
+(function () {           // converted to IIFE
+
+    function Question(question, answers, correctAnswer) {       // constructor function.
+        this.question = question;
+        this.answers = answers;
+        this.correct = correctAnswer;
+    }
+
+    Question.prototype.displayQuestion = function () {          // add display function to prototype chain so each question has a seperate copy of this function.
+        console.log(this.question);
+
+        for (var i = 0; i < this.answers.length; i++) {
+            console.log(i + ': ' + this.answers[i]);
+        }
+    }
+
+    Question.prototype.checkAnswer = function (ans, callback) {
+        var sc;
+
+        if (this.correct === ans) {
+            console.log("Correct");
+            sc = callback(true);
+        } else {
+            console.log("Incorrect");
+            sc = callback(false);
+        }
+        this.displayScore(sc);
+    }
+
+    Question.prototype.displayScore = function (sc) {
+        console.log('Current score is: ' + sc);
+        console.log('-----------------------------------------------');
+    }
+
+    var q1 = new Question('Is jsvscript the coolest programming language in the world?', ['Yes', 'No'], 0);
+    var q2 = new Question('What is the name of the calico cat?', ['Nuzzie', 'Misty', 'Cali', 'Dory'], 2);
+    var q3 = new Question('What does best describe coding?', ['Boring', 'Fun', 'Tedious', 'Hard'], 1);
+    var questions = [q1, q2, q3];
+
+    function score() {
+        var sc = 0;
+        return function (correct) {
+            if (correct) {
+                sc++;
+            }
+            return sc;
+        }
+    }
+
+    var keepScore = score();            // closures.
+
+    function nextQuestion() {
+        var n = Math.floor(Math.random() * questions.length);
+
+        questions[n].displayQuestion();
+
+        var answer = prompt('Please select correct answer');
+
+        if (answer !== 'exit') {
+            questions[n].checkAnswer(parseInt(answer), keepScore);
+            nextQuestion();
+        }
+    }
+
+    nextQuestion();
+
+})();
 
